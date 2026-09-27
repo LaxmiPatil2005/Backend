@@ -3,9 +3,9 @@ spring:
     name: auth-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/ecommerce_auth?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: ${MYSQL_PASSWORD:root}
+    url: ${DB_URL:jdbc:mysql://localhost:3306/ecommerce_auth?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -18,10 +18,10 @@ spring:
     open-in-view: false
 
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ${MAIL_USERNAME:your-email@gmail.com}
-    password: ${MAIL_PASSWORD:your-app-password}
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
     properties:
       mail:
         smtp:
@@ -36,11 +36,11 @@ spring:
     default-property-inclusion: non_null
 
 server:
-  port: 8081
+  port: ${PORT:8081}
 
 app:
   jwt:
-    secret: ${JWT_SECRET:3MCY9HY0KPxN4w6J+Za3qd+FjcXIBIF1R9/NK1kDsxsfrynJKQXhC1msiEOTWSQ+}
+    secret: ${JWT_SECRET}
     expiration-ms: ${JWT_EXPIRATION_MS:3600000}
 
 logging:
